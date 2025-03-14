@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-    <main style={{height:'300dvh'}} >
+    <main style={{height:'500dvh'}} >
       <Home />
     </main>
     

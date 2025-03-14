@@ -4,9 +4,11 @@ import ImagenScroll from '../../layouts/ImagenScroll/ImagenScroll'
 const Home = () => {
   return (
     <>
-    hola repo
-        <Header  />
-        <ImagenScroll/>
+      <div className="bg-fondo h-full">
+      <Header  />
+      <ImagenScroll/>
+      </div>
+       
     </>
   )
 }
