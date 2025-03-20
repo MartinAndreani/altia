@@ -16,7 +16,7 @@ const Header = () => {
       
       <header className=" h-42 flex justify-center items-center w-[40%]  rounded-b-[50%] animated-header  "   onMouseOver={()=>setIsHover(true)} onMouseOut={()=>setIsHover(false)}>
       
-      <div className={`bg-fuchsia-950  absolute  justify-center items-end flex overflow-hidden  
+      <div className={`bg-primary  absolute  justify-center items-end flex overflow-hidden  
         transform translate-x-[-50%] left-[50%] z-40    rounded-[45%] h-[390px] top-[-230px] w-[500px] ${isHover ? 'invisible  ': ' bouncing-box  '}`}>
 
           <img  className={`h-[80%] absolute top-[36%] object-cover `} src="src\assets\Mesa de trabajo 11 1.svg" alt=""  />
