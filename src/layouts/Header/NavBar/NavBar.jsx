@@ -2,21 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  return (
-    <div className="text-white flex justify-center items-center w-full h-full">
-      <ul className="flex justify-between items-center gap-20">
-        {["Inicio", "Nuestros Servicios", "Nosotros", "Galería", "Contacto"].map(
-          (item, index) => (
-            <li key={index} className="relative group">
-              <Link to={`/${item.toLowerCase().replace(/\s+/g, "")}`} className="relative text-white">
-                {item}
-                <span className="absolute left-1/2 bottom-[-5px] w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-              </Link>
-            </li>
-          )
-        )}
-      </ul>
-    </div>
-  );
-}
+    const menuItems = ["Inicio", "Servicios", "Nosotros", "Galería", "Contacto"];
 
+    return (
+        <nav className="w-full px-6 py-4 ">
+            <ul className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-20">
+                {menuItems.map((item, index) => (
+                    <li key={index} className="group">
+                        <Link
+                            to={`/${item.toLowerCase().replace(/\s+/g, "")}`}
+                            className="text-white font-light text-lg md:text-xl relative transition-all duration-300"
+                        >
+                            {item}
+                            <span className="absolute left-0 bottom-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    );
+}
