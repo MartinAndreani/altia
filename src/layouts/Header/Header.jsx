@@ -1,48 +1,65 @@
-import React from 'react'
-import './Header.css'
-import { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
+import './Header.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import NavBar from './NavBar/NavBar'
-
+import NavBar from './NavBar/NavBar';
 
 const Header = () => {
+    const [isHover, setIsHover] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
+    const headerRef = useRef(null);
 
-    const [isHover,setIsHover] = useState()
-    console.log(isHover)
-  return (
-    <Router>
-    <div className='flex justify-center items-center  fixed top-0 w-full h-42 z-50'>
-      
-      <header className=" h-42 flex justify-center items-center w-[40%]  rounded-b-[50%] animated-header  "   onMouseOver={()=>setIsHover(true)} onMouseOut={()=>setIsHover(false)}>
-      
-      <div className={`bg-primary  absolute  justify-center items-end flex overflow-hidden  
-        transform translate-x-[-50%] left-[50%] z-40    rounded-[45%] h-[390px] top-[-230px] w-[500px] ${isHover ? 'invisible  ': ' bouncing-box  '}`}>
+    useEffect(() => {
+        const checkTouchDevice = () => {
+            setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+        };
+        checkTouchDevice();
+    }, []);
 
-          <img  className={`h-[80%] absolute top-[36%] object-cover `} src="src\assets\Mesa de trabajo 11 1.svg" alt=""  />
-      </div>
+    useEffect(() => {
+        if (!isTouchDevice || !isHover) return;
 
-        <div className={`bg-fuchsia-950 w-[100%] h-[45%] rounded-2xl  flex items-center ${isHover ? 'visible fade-in ' : 'invisible ' } `}  >
-          <NavBar/>
-          <Routes>
-          <Route path="/"  />
-          <Route path="/servicios" />
-          <Route path="/nosotros" />
-          <Route path="/galeria" />
-          <Route path="/contacto"/>
-        </Routes>
-        </div>
+        const handleTouchOutside = (e) => {
+            if (headerRef.current && !headerRef.current.contains(e.target)) {
+                setIsHover(false);
+            }
+        };
 
-   </header>
+        document.addEventListener('touchstart', handleTouchOutside);
+        return () => {
+            document.removeEventListener('touchstart', handleTouchOutside);
+        };
+    }, [isHover, isTouchDevice]);
 
-    </div>
-    </Router>
-    
-    
-  )
-  
-}
+    return (
+        <Router>
+            <div className='flex justify-center items-end md:items-center fixed top-0 w-full md:h-42 z-50'>
+                <header
+                    ref={headerRef}
+                    className="md:h-42 flex justify-center items-center md:w-[40%] rounded-b-[50%] animated-header"
+                    onMouseOver={!isTouchDevice ? () => setIsHover(true) : undefined}
+                    onMouseOut={!isTouchDevice ? () => setIsHover(false) : undefined}
+                    onClick={isTouchDevice ? () => setIsHover(!isHover) : undefined}
+                >
+                    <div className={`bg-primary absolute justify-center items-end flex overflow-hidden 
+                            transform translate-x-[-50%] left-[50%] z-40 rounded-[45%] h-[390px]  top-[-230px] w-[500px]  ${isHover ? 'invisible' : 'bouncing-box'}`}>
+                        <img className="h-[80%] absolute top-[36%] object-cover " src="src/assets/Mesa de trabajo 11 1.svg" alt="" />
+                    </div>
 
+                    <div className={`flex items-center md:items-center w-96  md:w-[100%] md:h-[45%] md:rounded-2xl md:p-10 p-5  bg-primary opacity-70 text-xl  ${isHover ? 'visible fade-in ' : 'invisible'}`}>
+                        <NavBar />
+                        <Routes>
+                            <Route path="/" />
+                            <Route path="/servicios" />
+                            <Route path="/nosotros" />
+                            <Route path="/galeria" />
+                            <Route path="/contacto" />
+                        </Routes>
+                    </div>
+                </header>
+            </div>
+        </Router>
+    );
+};
 
-export default Header 
-
+export default Header;

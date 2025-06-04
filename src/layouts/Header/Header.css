@@ -5,10 +5,10 @@
     }
     to {
       transform: translate3d(0%, 0, 0);
-      opacity: 1;
+
     }
   }
-  
+
   .animated-header {
     animation: slideInDown 1s ease-out forwards;
   }
@@ -16,7 +16,7 @@
 
   @keyframes bounce {
     0%, 100% { transform: translateY(0);
-    opacity: 1; }
+     }
     50% { transform: translateY(-10px); opacity: 0.82; }
   }
   .bouncing-box {
@@ -30,11 +30,13 @@
       opacity: 0;
     }
     50%{
-      opacity: 0.5;
+
+      opacity: 0;
     }
+
     100%{
       transform: translateY(0);
-      opacity: 1;
+
     }
   }
   .fade-in {
@@ -42,4 +44,4 @@
   }
 
 
-  
+

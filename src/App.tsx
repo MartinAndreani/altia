@@ -10,7 +10,7 @@ function App() {
     <main className='bg-white' style={{height:'500dvh'}} >
       <Header/>
       <Home />
-      <Servicios/>
+      {/*<Servicios/>*/}
       <ImagenScroll/>
     </main>
     
