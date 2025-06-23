@@ -46,7 +46,7 @@ const Header = () => {
                         <img className="h-[80%] absolute top-[36%] object-cover " src="src/assets/Mesa de trabajo 11 1.svg" alt="" />
                     </div>
 
-                    <div className={`flex items-center md:items-center w-96  md:w-[100%] md:h-[45%] md:rounded-2xl md:p-10 p-5  bg-primary opacity-70 text-xl  ${isHover ? 'visible fade-in ' : 'invisible'}`}>
+                    <div className={`flex items-center md:items-center w-96  md:w-[100%] md:h-[45%] md:rounded-2xl md:p-10 p-5  bg-primary opacity-80  ${isHover ? 'visible fade-in ' : 'invisible'}`}>
                         <NavBar />
                         <Routes>
                             <Route path="/" />
